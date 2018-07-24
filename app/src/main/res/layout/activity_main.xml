@@ -1,122 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    tools:context=".Main">
+    android:layout_width="match_parent"
+    android:fillViewport="true"
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:contentDescription="@string/main_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/missing" />
+     >
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/main_question"
-        android:textSize="@dimen/main_question_size"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    <include
+        android:id="@+id/nav_bar"
+        layout="@layout/activity_navigation_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="78dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/nav_bar"
+        android:background="@drawable/background2"
+        tools:context=".Main">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="36dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/check_button"
-        app:layout_constraintBottom_toTopOf="@+id/guideline3"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+      <ImageView
+          android:id="@+id/main_image"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="25dp"
+          android:layout_marginLeft="25dp"
+          android:layout_marginRight="25dp"
+          android:layout_marginStart="25dp"
+          android:layout_marginTop="8dp"
+          android:adjustViewBounds="true"
+          android:contentDescription="@string/main_image"
+          android:cropToPadding="false"
+          app:layout_constraintBottom_toTopOf="@+id/guideline"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="1.0"
+          app:srcCompat="@drawable/missing" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="296dp" />
+      <TextView
+          android:id="@+id/main_question"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:text="@string/main_question"
+          android:textColor="@color/text_black"
+          android:textSize="@dimen/main_question_size"
+          android:textStyle="normal"
+          app:layout_constraintEnd_toEndOf="@+id/main_image"
+          app:layout_constraintStart_toStartOf="@+id/main_image"
+          app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="192dp" />
+      <EditText
+          android:id="@+id/year_input"
+          android:layout_width="78dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:ems="10"
+          android:hint="@string/year_input_hint"
+          android:inputType="number"
+          android:textColor="@color/text_black"
+          android:textColorHint="@color/text_hint"
+          app:layout_constraintBottom_toTopOf="@+id/guideline3"
+          app:layout_constraintStart_toStartOf="@+id/guideline4"
+          app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="438dp" />
+      <Button
+          android:id="@+id/check_button"
+          style="@android:style/Widget.Button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginTop="8dp"
+          android:onClick="check"
+          android:text="@string/check_button"
+          android:textColor="@color/text_black"
+          app:layout_constraintBottom_toTopOf="@+id/guideline3"
+          app:layout_constraintEnd_toStartOf="@+id/guideline5"
+          app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="68dp"
-        android:layout_marginStart="68dp"
-        android:text="Choice _3"
-        android:textOff="@string/month_3"
-        android:textOn="@string/month_3"
-        app:layout_constraintStart_toEndOf="@+id/toggleButton3"
-        app:layout_constraintTop_toTopOf="@+id/toggleButton3" />
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_end="234dp"
+          app:layout_constraintGuide_percent="0.5" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="Choice_2"
-        android:textOff="@string/month_2"
-        android:textOn="@string/month_2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_percent="0.5" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:text="Choice_1"
-        android:textOff="@string/month_1"
-        android:textOn="@string/month_1"
-        app:layout_constraintEnd_toStartOf="@+id/toggleButton3"
-        app:layout_constraintTop_toTopOf="@+id/toggleButton3" />
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline3"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_percent="0.9" />
 
-</android.support.constraint.ConstraintLayout>
+      <ToggleButton
+          android:id="@+id/d_choice3"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:onClick="onDChoiceClick3"
+          android:textColor="@color/text_black"
+          android:textOff="3"
+          android:textOn="3"
+          app:layout_constraintBottom_toTopOf="@+id/guideline7"
+          app:layout_constraintEnd_toStartOf="@+id/guideline5"
+          app:layout_constraintStart_toStartOf="@+id/guideline5"
+          app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+      <ToggleButton
+          android:id="@+id/m_choice3"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginStart="8dp"
+          android:onClick="onMChoiceClick3"
+          android:textColor="@color/text_black"
+          android:textOff="@string/month_3"
+          android:textOn="@string/month_3"
+          app:layout_constraintEnd_toStartOf="@+id/guideline5"
+          app:layout_constraintHorizontal_bias="0.512"
+          app:layout_constraintStart_toStartOf="@+id/guideline5"
+          app:layout_constraintTop_toTopOf="@+id/m_choice2" />
+
+      <ToggleButton
+          android:id="@+id/m_choice2"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginStart="8dp"
+          android:onClick="onMChoiceClick2"
+          android:textColor="@color/text_black"
+          android:textOff="@string/month_2"
+          android:textOn="@string/month_2"
+          app:layout_constraintBottom_toTopOf="@+id/guideline6"
+          app:layout_constraintEnd_toStartOf="@+id/guideline2"
+          app:layout_constraintStart_toStartOf="@+id/guideline2"
+          app:layout_constraintTop_toTopOf="@+id/guideline6"
+          app:layout_constraintVertical_bias="0.958" />
+
+      <ToggleButton
+          android:id="@+id/d_choice2"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="48dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:onClick="onDChoiceClick2"
+          android:textColor="@color/text_black"
+          android:textOff="2"
+          android:textOn="2"
+          app:layout_constraintBottom_toTopOf="@+id/guideline7"
+          app:layout_constraintEnd_toStartOf="@+id/guideline2"
+          app:layout_constraintStart_toStartOf="@+id/guideline2"
+          app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+      <ToggleButton
+          android:id="@+id/d_choice1"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:checked="false"
+          android:onClick="onDChoiceClick1"
+          android:textColor="@color/text_black"
+          android:textOff="1"
+          android:textOn="1"
+          app:layout_constraintBottom_toTopOf="@+id/guideline7"
+          app:layout_constraintEnd_toStartOf="@+id/guideline4"
+          app:layout_constraintStart_toStartOf="@+id/guideline4"
+          app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+      <ToggleButton
+          android:id="@+id/m_choice1"
+          style="@android:style/Widget.Button.Toggle"
+          android:layout_width="wrap_content"
+          android:layout_height="43dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginRight="8dp"
+          android:checked="false"
+          android:onClick="onMChoiceClick1"
+          android:textColor="@color/text_black"
+          android:textOff="@string/month_1"
+          android:textOn="@string/month_1"
+          app:layout_constraintEnd_toStartOf="@+id/guideline4"
+          app:layout_constraintHorizontal_bias="0.847"
+          app:layout_constraintStart_toStartOf="@+id/guideline4"
+          app:layout_constraintTop_toTopOf="@+id/m_choice2" />
+
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline4"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_percent="0.2" />
+
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline5"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          app:layout_constraintGuide_percent="0.8" />
+
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline6"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_percent="0.65" />
+
+      <android.support.constraint.Guideline
+          android:id="@+id/guideline7"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          app:layout_constraintGuide_percent="0.78" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+  </RelativeLayout>
+
+</ScrollView>

@@ -13,8 +13,16 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
     }
 
-    public void startQuiz(View view){
+    public void startQuiz(View view) {
         Intent intent = new Intent(this, Main.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void showLeaderboard(View view){
+        Intent intent = new Intent(this, Leaderboard.class);
+        startActivity(intent);
+        finish();
     }
 }
+
