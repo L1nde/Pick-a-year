@@ -34,6 +34,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.getPositionField().setText(String.valueOf(i+1));
         viewHolder.getScoreField().setText(String.valueOf(scoreEntity.getScore()));
         viewHolder.getDateField().setText(String.valueOf(scoreEntity.getDate()));
+        viewHolder.getAnsweredField().setText(String.valueOf(scoreEntity.getAnswered()));
     }
 
     public void setScores(List<ScoreEntity> scores){
@@ -51,12 +52,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         private TextView positionField;
         private TextView scoreField;
         private TextView dateField;
+        private TextView answeredField;
 
         public ViewHolder(View view) {
             super(view);
             positionField = view.findViewById(R.id.position);
             scoreField = view.findViewById(R.id.score);
             dateField = view.findViewById(R.id.date);
+            answeredField = view.findViewById(R.id.answered);
         }
 
         public TextView getPositionField() {
@@ -69,6 +72,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public TextView getDateField() {
             return dateField;
+        }
+
+        public TextView getAnsweredField() {
+            return answeredField;
         }
     }
 }

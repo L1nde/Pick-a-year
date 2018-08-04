@@ -18,7 +18,7 @@ public class ScoreRepository {
     public ScoreRepository(Application application){
         AppDatabase db = AppDatabase.getDatabase(application);
         scoreDao = db.scoreDao();
-        scores = scoreDao.getAll();
+        scores = scoreDao.getTop10();
     }
 
     public LiveData<List<ScoreEntity>> getScores() {

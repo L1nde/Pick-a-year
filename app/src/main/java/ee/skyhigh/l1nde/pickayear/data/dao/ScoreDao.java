@@ -15,8 +15,8 @@ public interface ScoreDao {
     @Insert
     void insert(ScoreEntity scoreEntity);
 
-    @Query("select * from leaderboard order by score DESC")
-    LiveData<List<ScoreEntity>> getAll();
+    @Query("select  * from leaderboard order by score DESC limit 10")
+    LiveData<List<ScoreEntity>> getTop10();
 
     @Query("delete from leaderboard")
     void deleteAll();

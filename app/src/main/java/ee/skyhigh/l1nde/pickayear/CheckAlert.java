@@ -17,6 +17,7 @@ public class CheckAlert extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
         builder.setMessage(message);
         builder.setNeutralButton(R.string.check_dismiss, new DialogInterface.OnClickListener() {
             @Override

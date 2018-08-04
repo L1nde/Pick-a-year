@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,19 +39,25 @@ public class Main extends AppCompatActivity {
     private ToggleButton d_choice2;
     private ToggleButton d_choice3;
 
+    private int points = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.back_button).setOnClickListener(new View.OnClickListener() {
+        Button back = findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Main.this, Home.class);
+                savePoints();
+                Intent intent = new Intent(Main.this, Leaderboard.class);
+                intent.putExtra("points", points);
                 startActivity(intent);
                 finish();
             }
         });
+        back.setText(R.string.end_quiz);
 
         scoreViewModel = ViewModelProviders.of(this).get(ScoreViewModel.class);
 
@@ -68,55 +75,31 @@ public class Main extends AppCompatActivity {
     }
 
     public void onMChoiceClick1(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.m_choice2)).setChecked(false);
         ((ToggleButton) findViewById(R.id.m_choice3)).setChecked(false);
     }
 
     public void onMChoiceClick2(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.m_choice1)).setChecked(false);
         ((ToggleButton) findViewById(R.id.m_choice3)).setChecked(false);
     }
 
     public void onMChoiceClick3(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.m_choice1)).setChecked(false);
         ((ToggleButton) findViewById(R.id.m_choice2)).setChecked(false);
     }
 
     public void onDChoiceClick1(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.d_choice2)).setChecked(false);
         ((ToggleButton) findViewById(R.id.d_choice3)).setChecked(false);
     }
 
     public void onDChoiceClick2(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.d_choice1)).setChecked(false);
         ((ToggleButton) findViewById(R.id.d_choice3)).setChecked(false);
     }
 
     public void onDChoiceClick3(View view){
-        ToggleButton toggleButton = (ToggleButton) view;
-        if (!toggleButton.isChecked()){
-            return;
-        }
         ((ToggleButton) findViewById(R.id.d_choice1)).setChecked(false);
         ((ToggleButton) findViewById(R.id.d_choice2)).setChecked(false);
     }
@@ -150,20 +133,25 @@ public class Main extends AppCompatActivity {
                 } else {
                     day = Integer.parseInt(d_choice3.getTextOn().toString());
                 }
-                final int points = calculatePoints(Integer.parseInt(yearInput.getText().toString()), month, day);
+                final int newPoints = calculatePoints(Integer.parseInt(((EditText)findViewById(R.id.year_input)).getText().toString()), month, day);
+                points += newPoints;
                 Question last = quizHolder.getLast();
-                checkAlert.setMessage("Correct answer is " + last.getDay() + "." + last.getMonth() + "." + last.getYear() + "\nCongrationlation! You got " + points);
+                checkAlert.setMessage("Correct answer is " + last.getDay() + "." + last.getMonth() + "." + last.getYear() + "\nCongrationlation! You got " + newPoints);
                 checkAlert.show(getSupportFragmentManager(), "check");
                 checkAlert.setOnDismissListener(new CheckAlert.OnDismissListener() {
                     @Override
                     public void onDismiss(CheckAlert checkAlert) {
                         nextQuestion();
                         TextView pointsView = findViewById(R.id.nav_points);
-                        pointsView.setText(String.valueOf(Integer.parseInt(pointsView.getText().toString()) + points));
+                        pointsView.setText(String.valueOf(points));
                     }
                 });
             }
         }
+    }
+
+    private void savePoints(){
+        scoreViewModel.insert(new ScoreEntity(points, quizHolder.getAnswered()));
     }
 
     private void nextQuestion(){
@@ -173,9 +161,10 @@ public class Main extends AppCompatActivity {
         Question nextQuestion = quizHolder.getNextQuestion();
 
         if (nextQuestion == null){
-            scoreViewModel.insert(new ScoreEntity(Integer.parseInt(((TextView) findViewById(R.id.nav_points)).getText().toString())));
+            savePoints();
 
             Intent intent = new Intent(this, Leaderboard.class);
+            intent.putExtra("points", points);
             startActivity(intent);
             finish();
             return;

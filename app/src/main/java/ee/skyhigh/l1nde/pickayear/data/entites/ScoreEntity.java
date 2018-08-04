@@ -6,6 +6,8 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity(tableName = "leaderboard")
@@ -20,16 +22,21 @@ public class ScoreEntity {
     @ColumnInfo(name = "date")
     private String date;
 
-    public ScoreEntity(int id, int score, String date) {
+    @ColumnInfo(name = "answered")
+    private int answered;
+
+    public ScoreEntity(int id, int score, String date, int answered) {
         this.id = id;
         this.score = score;
         this.date = date;
+        this.answered = answered;
     }
 
     @Ignore
-    public ScoreEntity(int score) {
+    public ScoreEntity(int score, int answered) {
         this.score = score;
-        this.date = new Date().toString();
+        this.answered = answered;
+        this.date = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.SHORT).format(new Date());
     }
 
     public int getScore() {
@@ -44,5 +51,7 @@ public class ScoreEntity {
         return id;
     }
 
-
+    public int getAnswered() {
+        return answered;
+    }
 }

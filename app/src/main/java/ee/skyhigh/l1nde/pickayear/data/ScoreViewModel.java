@@ -25,7 +25,7 @@ public class ScoreViewModel extends AndroidViewModel {
         return scores;
     }
 
-    public void insert(ScoreEntity scoreEntity){
+    public void insert(ScoreEntity scoreEntity) {
         scoreRepository.insert(scoreEntity);
     }
 }

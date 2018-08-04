@@ -27,8 +27,10 @@
     <string name="home_text">Pick a Year</string>
     <string name="play_button">Play</string>
     <string name="back_button">Back</string>
+    <string name="end_quiz">End</string>
     <string name="leaderboard_button">Leaderboard</string>
     <string name="leaderboard_title_pos">Rank</string>
     <string name="leaderboard_title_score">Score</string>
     <string name="leaderboard_title_date">Date</string>
+    <string name="leaderboard_title_questions" >Answered</string>
 </resources>

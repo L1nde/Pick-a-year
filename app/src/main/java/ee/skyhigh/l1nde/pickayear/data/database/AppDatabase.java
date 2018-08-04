@@ -11,7 +11,7 @@ import android.support.annotation.NonNull;
 import ee.skyhigh.l1nde.pickayear.data.dao.ScoreDao;
 import ee.skyhigh.l1nde.pickayear.data.entites.ScoreEntity;
 
-@Database(entities = {ScoreEntity.class}, version = 1)
+@Database(entities = {ScoreEntity.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
@@ -22,7 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
         if (INSTANCE == null){
             synchronized (AppDatabase.class){
                 if (INSTANCE == null){
-                    INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "leaderboard").addCallback(scoreDbCallback).build();
+                    INSTANCE = Room.databaseBuilder(context, AppDatabase.class, "leaderboard").fallbackToDestructiveMigration().addCallback(scoreDbCallback).build();
                 }
             }
         }
